@@ -1,0 +1,112 @@
+{% extends 'backend/base.html' %}
+{% load static %}
+
+
+{% block head %}
+    
+{% endblock head %}
+    
+
+
+
+{% block content %}
+<div class="content-wrapper">
+    <!-- Content -->
+
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <div class="row g-6">
+            <!-- Navigation -->
+            <div class="col-12 col-lg-4">
+                <div class="d-flex justify-content-between flex-column mb-4 mb-md-0">
+                    <h5 class="mb-4">Getting Started</h5>
+                    <ul class="nav nav-align-left nav-pills flex-column">
+                        <li class="nav-item mb-1">
+                            <a class="nav-link" href="{% url 'profile' %}">
+                                <i class="ti ti-building-store ti-sm me-1_5"></i>
+                                <span class="align-middle">Store details</span>
+                            </a>
+                        </li>
+                        <li class="nav-item mb-1">
+                            <a class="nav-link active" href="javascript:void(0);">
+                                <i class="ti ti-credit-card ti-sm me-1_5"></i>
+                                <span class="align-middle">Payments</span>
+                            </a>
+                        </li>
+
+                        
+                    </ul>
+                </div>
+            </div>
+            <!-- /Navigation -->
+            <!-- Options -->
+            <div class="col-12 col-lg-8 pt-6 pt-lg-0">
+                <div class="tab-content p-0">
+                    <!-- Payments Tab -->
+                    <div class="tab-pane fade show active" id="payments" role="tabpanel">
+                        
+
+                        <div class="card mb-6">
+                            <div class="card-header">
+                                <div class="card-title m-0">
+                                    <h5 class="m-0">Supported payment methods</h5>
+                                    <p class="my-0 card-subtitle">Payment methods that are available with one of Vuexy's approved payment providers.</p>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <h6 class="mb-5">Default</h6>
+                                <div class="row mb-5 g-6 bg-label-secondary px-6 rounded-2 mx-0 mt-0 bg-lighter">
+                                    <div class="col-12 d-flex justify-content-between align-items-center border-bottom p-0 pb-6">
+                                        <img src="{% static 'assets/img/icons/payments/paypal.png' %}" alt="Paypal" class="gray-shadow-sm rounded" width="57" />
+
+                                        <span class="fw-medium"><a href="javascript:void(0);"></a></span>
+                                    </div>
+                                    <div class="col-12 p-0">
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <p class="mb-2 small">Provider</p>
+                                                <p class="text-heading fw-medium">Paypal</p>
+                                            </div>
+                                            <div class="col-4">
+                                                <p class="mb-2 small">Status</p>
+                                                <p class="badge bg-label-success fw-medium">Active</p>
+                                            </div>
+                                            <div class="col-4">
+                                                <p class="mb-2 small">Transaction Fee</p>
+                                                <p class="text-heading fw-medium">2.00%</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+            
+                    </div>
+                </div>
+            </div>
+            <!-- /Options-->
+        </div>
+
+
+
+
+    </div>
+    <!-- / Content -->
+
+
+    <div class="content-backdrop fade"></div>
+</div>
+
+{% endblock content %}
+    
+
+
+
+
+{% block script %}
+    <script>
+        document.querySelector('.profile_payment__sidebar').classList.add('active')
+        document.querySelector('.settings___sidebar').classList.add('open')
+    </script>
+{% endblock script %}
+    

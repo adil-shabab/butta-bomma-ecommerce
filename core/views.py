@@ -45,3 +45,18 @@ def user_detail_address(request):
 
 def messages(request):
     return render(request, 'backend/messages.html')
+
+def create_voucher(request):
+    return render(request, 'backend/create-voucher.html')
+
+def vouchers(request):
+    return render(request, 'backend/vouchers.html')
+
+def profile(request):
+    return render(request, 'backend/profile.html')
+
+def profile_payments(request):
+    return render(request, 'backend/profile-payments.html')
+
+def login(request):
+    return render(request, 'backend/login.html')
