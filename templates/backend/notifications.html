@@ -1,0 +1,216 @@
+{% extends 'backend/base.html' %}
+{% load static %}
+
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'assets/vendor/css/pages/app-email.css' %}" />
+{% endblock head %}
+    
+
+
+
+{% block content %}
+
+{% load static %}
+
+<div class="content-wrapper">
+    <!-- Content -->
+
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <div class="app-email card">
+            <div class="row g-0">
+                <!-- Email Sidebar -->
+                <div class="col app-email-sidebar border-end flex-grow-0" id="app-email-sidebar">
+                    <div class="btn-compost-wrapper d-grid">
+                        <button class="btn btn-primary btn-compose" data-bs-toggle="modal" data-bs-target="#emailComposeSidebar" id="emailComposeSidebarLabel">Notifications</button>
+                    </div>
+                    <!-- Email Filters -->
+                    <div class="email-filters pt-4 pb-2">
+                        <!-- Email Filters: Folder -->
+                        <ul class="email-filter-folders list-unstyled">
+                            <li class="active d-flex justify-content-between align-items-center mb-1" data-target="inbox">
+                                <a href="javascript:void(0);" class="d-flex flex-wrap align-items-center">
+                                    <i class="ti ti-mail"></i>
+                                    <span class="align-middle ms-2">Unread Notifications</span>
+                                </a>
+                                <div class="badge bg-label-primary rounded-pill">21</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!--/ Email Sidebar -->
+
+                <!-- Emails List -->
+                <div class="col app-emails-list">
+                    <div class="card shadow-none border-0 rounded-0">
+                        <div class="card-body emails-list-header p-3 py-2">
+                            <!-- Email List: Search -->
+                            <div class="d-flex justify-content-between align-items-center px-3 mt-2">
+                                <div class="d-flex align-items-center w-100">
+                                    <i class="ti ti-menu-2 ti-lg cursor-pointer d-block d-lg-none me-4 mb-4" data-bs-toggle="sidebar" data-target="#app-email-sidebar" data-overlay></i>
+                                    <div class="mb-4 w-100">
+                                        <div class="input-group input-group-merge shadow-none">
+                                            <span class="input-group-text border-0 ps-0 py-0" id="email-search">
+                                                <i class="ti ti-search ti-lg"></i>
+                                            </span>
+                                            <input type="text" class="form-control email-search-input border-0 py-0" placeholder="Search mail" aria-label="Search mail" aria-describedby="email-search" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr class="mx-n3 emails-list-header-hr mb-2" />
+                            <!-- Email List: Actions -->
+                            <div class="d-flex justify-content-between align-items-center ps-1">
+                                <div class="d-flex align-items-center">
+                                    <div class="btn btn-text-secondary btn-icon rounded-pill me-1"><i class="ti ti-trash ti-md email-list-delete cursor-pointer"></i></div>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <span class="btn btn-icon btn-text-secondary rounded-pill me-1">
+                                        <i class="ti ti-refresh ti-md scaleX-n1-rtl cursor-pointer email-refresh"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="container-m-nx m-0" />
+
+                        <!-- Email List: Items -->
+                        <div class="email-list pt-0">
+                            <ul class="list-unstyled m-0">
+                                <li class="email-list-item email-marked-read d-flex align-items-center" data-starred="true" data-bs-toggle="sidebar" data-target="#app-email-view">
+                                    <div class="d-flex align-items-center w-100">
+
+                                        <img src="{% static 'assets/img/avatars/1.png' %}" alt="user-avatar" class="d-block flex-shrink-0 rounded-circle me-sm-2 me-0" height="32" width="32" />
+                                        <div class="email-list-item-content ms-2 ms-sm-0 me-2">
+                                            <span class="email-list-item-username me-2 text-heading">Chandler Bing</span>
+                                            <small class="email-list-item-subject d-xl-inline-block d-block"> Ordered new product with ₹5899</small>
+                                        </div>
+                                        <div class="email-list-item-meta ms-auto d-flex align-items-center">
+                                            <span class="email-list-item-label badge badge-dot bg-danger d-none d-md-inline-block me-2" data-label="private"></span>
+                                            <small class="email-list-item-time text-muted">08:40 AM</small>
+                                            <ul class="list-inline email-list-item-actions">
+                                                <li class="list-inline-item email-delete btn btn-icon btn-text-secondary rounded-pill"><i class='ti ti-trash ti-md'></i></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                                <!-- Additional email list items -->
+                            </ul>
+                            <ul class="list-unstyled m-0">
+                                <li class="email-list-empty text-center d-none">No items found.</li>
+                            </ul>
+                        </div>
+
+
+
+
+                    </div>
+                    <div class="app-overlay"></div>
+                </div>
+                <!-- /Emails List -->
+
+
+                <!-- Email View -->
+                <div class="col app-email-view flex-grow-0 bg-lighter" id="app-email-view">
+                    <div class="card shadow-none border-0 rounded-0 app-email-view-header p-5 pt-md-4 py-2">
+                    <!-- Email View : Title  bar-->
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="d-flex align-items-center overflow-hidden">
+                        <span class="ms-sm-2 me-4"><i class="ti ti-chevron-left ti-md cursor-pointer" data-bs-toggle="sidebar" data-target="#app-email-view"></i></span>
+                        <h6 class="text-truncate mb-0 me-2 fw-normal">User Name</h6>
+                        <span class="badge bg-label-warning rounded-pill">Important</span>
+                        </div>
+                        <!-- Email View : Action bar-->
+                        <div class="d-flex align-items-center">
+                        <span class="btn btn-icon p-0 me-2 text-muted">
+                            <i class='ti ti-chevron-left ti-md'></i>
+                        </span>
+                        <span class="btn btn-icon p-0">
+                            <i class="ti ti-chevron-right ti-md"></i>
+                        </span>
+                        </div>
+                    </div>
+                    <hr class="app-email-view-hr mx-n5 mb-2">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="d-flex align-items-center">
+                            <span class="btn btn-icon btn-text-secondary rounded-pill me-1"><i class='ti ti-trash ti-md cursor-pointer'></i></span>
+                        </div>
+                    </div>
+                    </div>
+                    <hr class="m-0">
+                    <!-- Email View : Content-->
+                    <div class="app-email-view-content py-4">
+
+                        <!-- Email View : Last mail-->
+                        <div class="card email-card-last mx-sm-6 mx-3 mt-4">
+                            <div class="card-header d-flex justify-content-between align-items-center flex-wrap border-bottom">
+                                <div class="d-flex align-items-center mb-sm-0 mb-3">
+                                    <img src="{% static 'assets/img/avatars/1.png' %}" alt="user-avatar" class="flex-shrink-0 rounded-circle me-4" height="38" width="38" />
+                                    <div class="flex-grow-1 ms-1">
+                                        <h6 class="m-0 fw-normal">Chandler Bing</h6>
+                                        <small class="text-body">iAmAhoot@email.com</small>
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <p class="mb-0 me-4 text-muted">June 20th 2020, 08:10 AM</p>
+                                    <span class="btn btn-icon btn-text-secondary rounded-pill"><i class="email-list-item-bookmark ti ti-star ti-md cursor-pointer"></i></span>
+                                    
+                                </div>
+                            </div>
+                            <div class="card-body pt-5">
+                                <p class="fw-medium">Greetings!</p>
+                                <p>
+                                    It is a long established fact that a reader will be distracted by the readable content
+                                    of a page when looking at its layout. The point of using Lorem Ipsum is that it has a
+                                    more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making
+                                    it look like readable English.
+                                </p>
+                                <p>
+                                    There are many variations of passages of Lorem Ipsum available, but the majority have
+                                    suffered alteration in some form, by injected humour, or randomised words which don't
+                                    look even slightly believable.
+                                </p>
+                                <p class="mb-0">Sincerely yours,</p>
+                                <p class="fw-medium mb-0">Envato Design Team</p>
+                                <hr>
+                                <p class="text-muted mb-2">Attachments</p>
+                                <div class="cursor-pointer">
+                                    <i class="ti ti-file"></i>
+                                    <span class="align-middle ms-1">report.xlsx</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- Email View -->
+                </div>
+  
+
+            </div>
+        </div>
+    </div>
+    <!-- / Content -->
+</div>
+
+{% endblock content %}
+    
+
+
+
+
+{% block script %}
+    <script>
+        document.querySelector('.notifications__sidebar').classList.add('active')
+    </script>
+
+    <!-- Vendors JS -->
+    <script src="{% static 'assets/vendor/libs/quill/katex.js' %}"></script>
+    <script src="{% static 'assets/vendor/libs/quill/quill.js' %}"></script>
+    <script src="{% static 'assets/vendor/libs/select2/select2.js' %}"></script>
+    <script src="{% static 'assets/vendor/libs/block-ui/block-ui.js' %}"></script>
+
+
+    <script src="{% static 'assets/js/app-email.js' %}"></script>
+
+{% endblock script %}
+    

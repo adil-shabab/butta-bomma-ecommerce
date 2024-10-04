@@ -46,6 +46,12 @@ def user_detail_address(request):
 def messages(request):
     return render(request, 'backend/messages.html')
 
+def notifications(request):
+    return render(request, 'backend/notifications.html')
+
+def payments(request):
+    return render(request, 'backend/payments.html')
+
 def create_voucher(request):
     return render(request, 'backend/create-voucher.html')
 
