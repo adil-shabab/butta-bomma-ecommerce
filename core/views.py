@@ -10,6 +10,9 @@ from .models import *
 def signup(request):
     return render(request, 'backend/signup.html')
 
+def login_view(request):
+    return render(request, 'backend/login.html')
+
 def user_logout(request):
     logout(request)
     return redirect('home')
