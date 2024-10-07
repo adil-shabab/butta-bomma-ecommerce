@@ -420,6 +420,9 @@
 
                     <!-- / Navbar -->
 
+
+                    <!-- Toast Notifications Container -->
+                    <ul class="notifications"></ul>
                     
                     
                     {% block content %}
@@ -461,6 +464,66 @@
           
         {% endblock script %}
           
+
+
+
+
+        <!-- Include your toast notification JS -->
+        <script>
+            const notifications = document.querySelector(".notifications");
+
+            // Toast message details for different types
+            const toastDetails = {
+                timer: 5000,
+                success: {
+                    icon: "fa-circle-check",
+                    text: "Success: This is a success toast."
+                },
+                error: {
+                    icon: "fa-circle-xmark",
+                    text: "Error: This is an error toast."
+                },
+                warning: {
+                    icon: "fa-circle-exclamation",
+                    text: "Warning: This is a warning toast."
+                },
+                info: {
+                    icon: "fa-circle-info",
+                    text: "Info: This is an information toast."
+                }
+            };
+
+            // Function to remove a toast
+            const removeToast = (toast) => {
+                toast.classList.add("hide");
+                if (toast.timeoutId) clearTimeout(toast.timeoutId);
+                setTimeout(() => toast.remove(), 500);
+            };
+
+            // Function to create a toast notification
+            const createToast = (type, message) => {
+                const { icon } = toastDetails[type];
+                const toast = document.createElement("li"); // Create a new 'li' element
+                toast.className = `toast ${type}`; // Set classes for the toast
+                toast.innerHTML = `<div class="column">
+                                        <i class="fa-solid ${icon}"></i>
+                                        <span>${message}</span>
+                                    </div>
+                                    <i class="fa-solid fa-xmark" onclick="removeToast(this.parentElement)"></i>`;
+                notifications.appendChild(toast); // Append the toast to the notifications container
+                toast.timeoutId = setTimeout(() => removeToast(toast), 5000); // Remove after 5 seconds
+            };
+
+            // Loop through Django messages and create toasts
+            {% if messages %}
+                {% for message in messages %}
+                    let messageType = "{{ message.tags }}";  // Django message tag (success, error, etc.)
+                    let messageText = "{{ message }}";  // The actual message
+                    createToast(messageType, messageText);
+                {% endfor %}
+            {% endif %}
+
+        </script>
 
         <!-- Vendors JS -->
         <script src="{% static 'assets/vendor/libs/apex-charts/apexcharts.js' %}"></script>

@@ -5,7 +5,7 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-        <title>Login</title>
+        <title>Sign Up</title>
 
         <!-- Favicon -->
         <link rel="icon" type="image/x-icon" href="https://demos.pixinvent.com/vuexy-html-admin-template/assets/img/favicon/favicon.ico" />
@@ -44,7 +44,7 @@
         <div class="container-xxl">
             <div class="authentication-wrapper authentication-basic container-p-y">
                 <div class="authentication-inner py-6">
-                    <!-- Login -->
+                    <!-- Sign Up -->
                     <div class="card">
                         <div class="card-body">
                             <!-- Logo -->
@@ -70,47 +70,72 @@
                                 </a>
                             </div>
                             <!-- /Logo -->
-                            <h4 class="mb-1">Welcome to Vuexy! 👋</h4>
-                            <p class="mb-6">Please sign-in to your account and start the adventure</p>
+                            <h4 class="mb-1">Join Vuexy! 👋</h4>
+                            <p class="mb-6">Create an account to explore all features</p>
 
-                            <form id="formAuthentication" class="mb-4" action="{% url 'login' %}" method="POST">
+                            <form id="formAuthentication" class="mb-4" action="{% url 'signup' %}" method="POST">
                                 {% csrf_token %}
                                 <div class="mb-6">
-                                    <label for="email" class="form-label">Email or Username</label>
-                                    <input type="text" class="form-control" id="email" name="username" placeholder="Enter your email or username" autofocus />
+                                    <label for="username" class="form-label">Username</label>
+                                    <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username" required autofocus />
                                 </div>
-                                <div class="mb-6 form-password-toggle">
-                                    <label class="form-label" for="password">Password</label>
-                                    <div class="input-group input-group-merge">
-                                        <input type="password" id="password" class="form-control" name="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password" />
-                                        <span class="input-group-text cursor-pointer"><i class="ti ti-eye-off"></i></span>
-                                    </div>
-                                </div>
-                                <div class="my-8">
-                                    <div class="d-flex justify-content-between">
-                                        <div class="form-check mb-0 ms-2">
-                                            <input class="form-check-input" type="checkbox" id="remember-me" />
-                                            <label class="form-check-label" for="remember-me">Remember Me</label>
-                                        </div>
-                                    </div>
-                                </div>
+
                                 <div class="mb-6">
-                                    <button class="btn btn-primary d-grid w-100" type="submit">Login</button>
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required />
+                                </div>
+
+                                <div class="mb-6">
+                                    <label for="phone_number" class="form-label">Phone Number</label>
+                                    <input type="text" class="form-control" id="phone_number" name="phone_number" placeholder="Enter your phone number" required />
+                                </div>
+
+                                <div class="mb-6">
+                                    <label for="state" class="form-label">State</label>
+                                    <input type="text" class="form-control" id="state" name="state" placeholder="Enter your state" required />
+                                </div>
+
+                                <div class="mb-6">
+                                    <label for="gender" class="form-label">Gender</label>
+                                    <select class="form-control" id="gender" name="gender">
+                                        <option value="M">Male</option>
+                                        <option value="F">Female</option>
+                                        <option value="O">Other</option>
+                                    </select>
+                                </div>
+
+                                <div class="mb-6">
+                                    <label class="form-label" for="password1">Password</label>
+                                    <input type="password" id="password1" class="form-control" name="password1" placeholder="Create your password" required />
+                                </div>
+
+                                <div class="mb-6">
+                                    <label class="form-label" for="password2">Confirm Password</label>
+                                    <input type="password" id="password2" class="form-control" name="password2" placeholder="Confirm your password" required />
+                                </div>
+
+                                <div class="mb-6">
+                                    <button class="btn btn-primary d-grid w-100" type="submit">Sign Up</button>
                                 </div>
                             </form>
+
+                            <p class="text-center">
+                                <span>Already have an account?</span>
+                                <a href="{% url 'login' %}">
+                                    <span>Sign in instead</span>
+                                </a>
+                            </p>
                         </div>
                     </div>
-                    <!-- /Register -->
+                    <!-- /Sign Up -->
                 </div>
             </div>
         </div>
         <!-- Toast Notifications Container -->
         <ul class="notifications"></ul>
-
         <!-- / Content -->
 
         <!-- Core JS -->
-        <!-- build:js assets/vendor/js/core.js -->
         <script src="{% static 'assets/vendor/libs/jquery/jquery.js' %}"></script>
         <script src="{% static 'assets/vendor/libs/popper/popper.js' %}"></script>
         <script src="{% static 'assets/vendor/js/bootstrap.js' %}"></script>
@@ -120,16 +145,12 @@
         <script src="{% static 'assets/vendor/libs/i18n/i18n.js' %}"></script>
         <script src="{% static 'assets/vendor/libs/typeahead-js/typeahead.js' %}"></script>
         <script src="{% static 'assets/vendor/js/menu.js' %}"></script>
-        <!-- endbuild -->
-
 
         
 
         <!-- Include your toast notification JS -->
         <script>
             const notifications = document.querySelector(".notifications");
-
-            console.log(notifications)
 
             // Toast message details for different types
             const toastDetails = {
@@ -161,7 +182,6 @@
 
             // Function to create a toast notification
             const createToast = (type, message) => {
-                console.log("Coming")
                 const { icon } = toastDetails[type];
                 const toast = document.createElement("li"); // Create a new 'li' element
                 toast.className = `toast ${type}`; // Set classes for the toast
@@ -177,7 +197,6 @@
             // Loop through Django messages and create toasts
             {% if messages %}
                 {% for message in messages %}
-                    console.log("Hello")
                     let messageType = "{{ message.tags }}";  // Django message tag (success, error, etc.)
                     let messageText = "{{ message }}";  // The actual message
                     createToast(messageType, messageText);

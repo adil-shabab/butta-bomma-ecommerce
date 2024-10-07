@@ -1,4 +1,21 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages as msg
+from .forms import *
+from .models import *
+
+
+
+def signup(request):
+    return render(request, 'backend/signup.html')
+
+def user_logout(request):
+    logout(request)
+    return redirect('home')
+
+
+
 
 # Create your views here.
 def dashboard(request):
@@ -64,5 +81,3 @@ def profile(request):
 def profile_payments(request):
     return render(request, 'backend/profile-payments.html')
 
-def login(request):
-    return render(request, 'backend/login.html')
